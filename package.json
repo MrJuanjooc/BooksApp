@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "test",
     "start": "node app.js",
     "dev": "nodemon -L app.js"
   },
@@ -20,7 +20,9 @@
   "homepage": "https://github.com/MrJuanjooc/BooksApp#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "mongoose": "^5.9.6"
   },
   "devDependencies": {
