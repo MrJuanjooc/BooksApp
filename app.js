@@ -21,7 +21,7 @@ app.use("/api/v1", router);
 app.use(errorMiddleware);
 
 mongoose.connect(
-  "mongodb://" + config.bd_ip + ":" + config.bd_port + "/" + config.bd_name,
+  "mongodb://" + config.DB_IP + ":" + config.DB_PORT + "/" + config.DB_NAME,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -44,6 +44,6 @@ if (!db) {
   console.log("Conexión Exitosa a la Base de Datos");
 }
 
-app.listen(config.port, () => {
-  console.log("Escuchando el puerto: " + config.port);
+app.listen(config.PORT, () => {
+  console.log("Escuchando el puerto: " + config.PORT);
 });
