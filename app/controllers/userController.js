@@ -27,7 +27,7 @@ exports.deleteUser = async (req, res) => {
     if (!deleteResult) {
       res.status(404).send({ error: "Propietario No Encontrado" });
     } else {
-      res.status(200).send(this.deleteUser);
+      res.status(200).send(deleteResult);
     }
   } catch (error) {
     res.status(500).send(err);
