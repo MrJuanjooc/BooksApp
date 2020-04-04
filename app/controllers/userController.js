@@ -49,7 +49,7 @@ exports.findUser = async (req, res) => {
   }
 };
 
-exports.updateUser = async (req, data) => {
+exports.updateUser = async (req, res) => {
   const idUser = req.params.id;
   const data = req.body;
   try {
