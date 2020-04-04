@@ -40,7 +40,7 @@ exports.findUser = async (req, res) => {
     let findResult = await userService.findUser(idUser);
 
     if (!findResult) {
-      res.status(404).send({error: 'Usuario No Encontrado'});
+      res.status(404).send({ error: "Usuario No Encontrado" });
     } else {
       res.status(200).send(findResult);
     }
@@ -49,3 +49,18 @@ exports.findUser = async (req, res) => {
   }
 };
 
+exports.updateUser = async (req, data) => {
+  const idUser = req.params.id;
+  const data = req.body;
+  try {
+    let putResult = await userService.updateUser(idUser, data);
+
+    if (!putResult) {
+      res.status(404).send({ error: "Usuario No Encontrado" });
+    } else {
+      res.status(200).send(putResult);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
