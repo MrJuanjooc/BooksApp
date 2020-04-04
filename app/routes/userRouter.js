@@ -9,5 +9,6 @@ module.exports = router => {
     router
     .route('/user/:id')
     .delete(userController.deleteUser)
-    .get(userController.findUser);
+    .get(userController.findUser)
+    .put(userController.updateUser);
 };
