@@ -19,3 +19,9 @@ exports.findUser = async idUser => {
   return await userModel
   .findById(idUser)
 };
+
+exports.updateUser = async (idUser, data) => {
+  return await userModel.findByIdUpdate(idUser, data, {
+    new: true
+  });
+};
