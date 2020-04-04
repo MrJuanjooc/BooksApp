@@ -33,3 +33,19 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.findUser = async (req, res) => {
+  try {
+    const idUser = req.params.id;
+    let findResult = await userService.findUser(idUser);
+
+    if (!findResult) {
+      res.status(404).send({error: 'Usuario No Encontrado'});
+    } else {
+      res.status(200).send(findResult);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
