@@ -1,13 +1,13 @@
-const userController = require('../controllers/userController');
+const userController = require("../controllers/userController");
 
-module.exports = router => {
-    router
-    .route('/user')
+module.exports = (router) => {
+  router
+    .route("/user")
     .get(userController.getUser)
     .post(userController.createUser);
 
-    router
-    .route('/user/:id')
+  router
+    .route("/user/:id")
     .delete(userController.deleteUser)
     .get(userController.findUser)
     .put(userController.updateUser);
