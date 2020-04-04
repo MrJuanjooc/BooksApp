@@ -11,7 +11,7 @@ require("express-async-errors"); //dependencia instalada
 
 app.use(
   bodyParser.urlencoded({
-    extended: true
+    extended: true,
   })
 );
 
@@ -25,10 +25,10 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: true
+    useFindAndModify: true,
   },
 
-  err => {
+  (err) => {
     if (err) {
       console.log("Fallas al conectar, error: " + err);
     }
