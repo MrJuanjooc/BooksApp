@@ -12,3 +12,7 @@ exports.getBooks = async (book) => {
 exports.createBook = async (idBook) => {
   return await bookModel.create(idBook);
 };
+
+exports.deleteBook = async (idBook) => {
+  return await bookModel.findByIdAndDelete(idBook);
+};
