@@ -9,5 +9,6 @@ module.exports = (router) => {
   router
     .route("/book/:id")
     .delete(bookController.deleteBook)
-    .get(bookController.findBook);
+    .get(bookController.findBook)
+    .put(bookController.updateBook);
 };
