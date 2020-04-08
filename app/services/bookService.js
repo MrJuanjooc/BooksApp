@@ -20,3 +20,9 @@ exports.deleteBook = async (idBook) => {
 exports.findBook = async (idBook) => {
   return await bookModel.findById(idBook);
 };
+
+exports.updateBook = async (idBook, data) => {
+  return await bookModel.findByIdAndUpdate(idBook, data, {
+    new: true,
+  });
+};
