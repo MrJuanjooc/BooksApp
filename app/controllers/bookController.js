@@ -25,9 +25,25 @@ exports.deleteBook = async (req, res) => {
     deleteResult = await bookService.deleteBook(idBook);
 
     if (!deleteResult) {
-      res.status(404).send({ error: "Libro no encontrado" });
+      res
+        .status(404)
+        .send({ error: "Error al elminar el Libro, este no existe" });
     }
     res.status(200).send(deleteResult);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+exports.findBook = async (req, res) => {
+  try {
+    const idBook = req.params.id;
+    findResult = await bookService.findBook(idBook);
+
+    if (!findResult) {
+      res.status(404).send({ error: "El libro no existe" });
+    }
+    res.status(200).send(findResult);
   } catch (err) {
     res.status(500).send(err);
   }
