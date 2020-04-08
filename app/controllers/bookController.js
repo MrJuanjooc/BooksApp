@@ -48,3 +48,21 @@ exports.findBook = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.updateBook = async (req, res) => {
+  const idBook = req.params.id;
+  const data = req.body;
+
+  try {
+    let putResult = await bookService.updateBook(idBook, data);
+
+    if (!putResult) {
+      res
+        .status(404)
+        .send({ error: "No Se Actulizo el Libro debido a que no existe" });
+    }
+    res.status(200).send(putResult);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
