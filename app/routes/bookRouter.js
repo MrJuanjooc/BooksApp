@@ -5,4 +5,6 @@ module.exports = (router) => {
     .route("/book")
     .get(bookController.getBooks)
     .post(bookController.createBook);
+
+  router.route("/book/:id").delete(bookController.deleteBook);
 };

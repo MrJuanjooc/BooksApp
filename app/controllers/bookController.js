@@ -18,3 +18,17 @@ exports.createBook = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.deleteBook = async (req, res) => {
+  try {
+    const idBook = req.params.id;
+    deleteResult = await bookService.deleteBook(idBook);
+
+    if (!deleteResult) {
+      res.status(404).send({ error: "Libro no encontrado" });
+    }
+    res.status(200).send(deleteResult);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
