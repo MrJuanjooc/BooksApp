@@ -6,5 +6,8 @@ module.exports = (router) => {
     .get(bookController.getBooks)
     .post(bookController.createBook);
 
-  router.route("/book/:id").delete(bookController.deleteBook);
+  router
+    .route("/book/:id")
+    .delete(bookController.deleteBook)
+    .get(bookController.findBook);
 };
