@@ -1,6 +1,7 @@
 const userRouter = require("../routes/userRouter"),
-  bookRouter = require("../routes/bookRouter");
+  bookRouter = require("../routes/bookRouter"),
+  authRouter = require("../routes/authRoute");
 
 module.exports = (router) => {
-  userRouter(router), bookRouter(router);
+  userRouter(router), bookRouter(router), authRouter(router);
 };
