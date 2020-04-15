@@ -15,7 +15,7 @@ exports.deleteUser = async (req, res) => {
     deleteResult = await userService.deleteUser(idUser);
 
     if (!deleteResult) {
-      res.status(404).send({ error: "Propietario No Encontrado" });
+      res.status(404).send({ error: "Usuario No Encontrado" });
     } else {
       res.status(200).send(deleteResult);
     }

@@ -36,10 +36,10 @@ userScheme.methods.comparePassword = async function (password) {
   return result;
 };
 
-//dispara un trigger antes de guardar 
-userScheme.pre('save', async function(next){
+//dispara un trigger antes de guardar
+userScheme.pre("save", async function (next) {
   const user = this;
-  if (!user.isModified('password')) {
+  if (!user.isModified("password")) {
     return next();
   }
 
