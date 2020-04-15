@@ -17,6 +17,12 @@ let bookScheme = new mongoose.Schema({
     type: String,
     require: true,
   },
+  categories: [
+    {
+      type: String,
+      require: true,
+    },
+  ],
 });
 
 mongoose.model("Book", bookScheme);
