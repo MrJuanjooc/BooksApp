@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken"),
   config = require("../configs/config"),
-  userRegisterService = require("../services/userRegisterService"),
-  userRegisterModel = require("../models/userRegisterModel");
+  userService = require("../services/userService"),
+  userModel = require("../models/userModel");
 
 exports.authentication = async (username, pass) => {
-  const user = await userRegisterService.getUserByUsername(username);
+  const user = await userService.getUSerByUsername(username);
   if (!user) {
     throw new Error("Usuario no Encontrado o no Existe");
   }
@@ -25,12 +25,12 @@ exports.authentication = async (username, pass) => {
 
 exports.signUp = async (user) => {
   const username = user.userName;
-  const userExist = await userRegisterService.getUserByUsername(username);
+  const userExist = await userService.getUSerByUsername(username);
 
   if (userExist) {
     throw new Error("El usuario ya Existe");
   }
-  return await userRegisterService.createUser(user);
+  return await userService.createUser(user);
 };
 
 exports.valideToken = (token) => {
