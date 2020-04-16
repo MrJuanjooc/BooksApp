@@ -1,5 +1,11 @@
 const userModel = require("../models/userModel");
 
+exports.getUSerByUsername = async (username) => {
+  return await userModel.findOne({
+    username: username,
+  });
+};
+
 exports.getUsers = async (user) => {
   if (user.query.username) {
     return await userModel
