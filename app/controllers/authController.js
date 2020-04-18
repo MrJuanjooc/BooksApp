@@ -1,4 +1,5 @@
-const authService = require("../services/authService");
+const authService = require("../services/authService"),
+  userService = require("../services/userService");
 
 exports.login = async (req, res) => {
   const user = req.body.user,
@@ -8,13 +9,13 @@ exports.login = async (req, res) => {
     const token = await authService.authentication(user, pass);
     const response = { token: token };
 
-    if (!response) {
-      res.status(404).send({ error: "Id de Usuario no Encontrado" });
-    }
+    // if (!response) {
+    //   res.status(404).send({ error: "Id de Usuario no Encontrado" });
+    // }
 
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send({ error: err.message });
+    res.status(401).send({ error: "Autenticación Fallida" });
   }
 };
 
@@ -32,14 +33,21 @@ exports.authentication = async (req, res) => {
 exports.signup = async (req, res) => {
   try {
     const user = await authService.signUp(req.body);
+    //  const username = user.username;
+    //  const userExist = await userService.getUSerByUsername(username);
+
+    //  if (userExist) {
+    //    res.status(401).send({ error: "El username ya existe" });
+    //  }
 
     if (!user) {
       return res
-        .status(401)
+        .status(404)
         .send({ error: "El usuario no ha podido ser creado" });
     }
+
     return res.status(200).send(user);
-  } catch (error) {
+  } catch (err) {
     res.status(500).send({ error: err.message });
   }
 };
