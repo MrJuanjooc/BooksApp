@@ -48,3 +48,22 @@ userScheme.pre("save", async function (next) {
 
 mongoose.model("User", userScheme);
 module.exports = mongoose.model("User");
+
+/*
+
+{
+	"username": 		"alejo",
+	"name":			"Ajelandro Cardona",
+	"password":		"123456",
+	"favoritos":	"5e8a5ded6a87462dcc497515"
+}
+
+{
+	"username": 		"juanjooc",
+	"name":			"Juan Jose Ocampo Castaño",
+	"password":		"123456",
+	"favoritos":	"5e8a5ded6a87462dcc497515"
+}
+
+
+*/
