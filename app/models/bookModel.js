@@ -7,16 +7,18 @@ let bookScheme = new mongoose.Schema({
   },
   descripcion: {
     type: String,
-    require: true,
   },
   autor: {
     type: String,
-    require: true,
   },
   imagen: {
     type: String,
-    require: true,
   },
+  categorias: [
+    {
+      type: String,
+    },
+  ],
 });
 
 mongoose.model("Book", bookScheme);

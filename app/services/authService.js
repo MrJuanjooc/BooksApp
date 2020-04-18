@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken"),
 exports.authentication = async (username, pass) => {
   const user = await userService.getUSerByUsername(username);
   if (!user) {
-    throw new Error("Usuario no Encontrado o no Existe");
+    throw new Error("Id de usuario no encontrado");
   }
 
   const Result = await user.comparePassword(pass);
@@ -24,11 +24,11 @@ exports.authentication = async (username, pass) => {
 };
 
 exports.signUp = async (user) => {
-  const username = user.userName;
-  const userExist = await userService.getUSerByUsername(username);
+  const username = user.username,
+  userExist = await userService.getUSerByUsername(username);
 
   if (userExist) {
-    throw new Error("El usuario ya Existe");
+    throw new Error("El username ya existe");
   }
   return await userService.createUser(user);
 };
