@@ -1,4 +1,6 @@
-const userController = require("../controllers/userController");
+const userController = require("../controllers/userController"),
+authMiddleware = require("../middlewares/authMiddleware");
+
 
 module.exports = (router) => {
   router.route("/user").get(userController.getUser);
