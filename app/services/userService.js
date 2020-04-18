@@ -1,4 +1,6 @@
-const userModel = require("../models/userModel");
+const userModel = require("../models/userModel"),
+  bookModel = require("../models/bookModel"),
+  reqFieldException = require("../exceptions/reqFieldException");
 
 exports.getUSerByUsername = async (username) => {
   return await userModel.findOne({
@@ -31,6 +33,11 @@ exports.deleteUser = async (idUser) => {
   return await userModel.findByIdAndDelete(idUser);
 };
 
-exports.createUser = async (user) => {
-  return await userModel.create(user);
+exports.createUser = async (usr, bk) => {
+  if (!usr) {
+    throw new reqFieldException("User");
+  }
+  let user = await userModel.create(usr);
+  
+  return user;
 };

@@ -9,17 +9,6 @@ exports.getUser = async (user, res) => {
   }
 };
 
-exports.createUser = async (req, res) => {
-  try {
-    const idUser = req.body;
-
-    postResult = await userService.createUser(idUser);
-    res.status(200).send(postResult);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
-
 exports.deleteUser = async (req, res) => {
   try {
     const idUser = req.params.id;
@@ -30,7 +19,7 @@ exports.deleteUser = async (req, res) => {
     } else {
       res.status(200).send(deleteResult);
     }
-  } catch (error) {
+  } catch (err) {
     res.status(500).send(err);
   }
 };
