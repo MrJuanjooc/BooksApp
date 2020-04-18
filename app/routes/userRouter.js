@@ -5,7 +5,6 @@ module.exports = (router) => {
 
   router
     .route("/user/:id")
-    .post(userController.createUser)
     .delete(userController.deleteUser)
     .get(userController.findUser)
     .put(userController.updateUser);
