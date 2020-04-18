@@ -8,29 +8,36 @@ exports.getUSerByUsername = async (username) => {
   });
 };
 
-exports.getUsers = async (user) => {
-  if (user.query.username) {
-    return await userModel
-      .findOne({ username: userModel.query.username })
-      .populate("Book", "nombre", "descripcion", "autor", "imagen");
-  }
-  return await userModel.find();
-};
-
-exports.findUser = async (idUser) => {
-  return await userModel
-    .findById(idUser)
-    .populate("Book", "nombre", "descripcion", "autor", "imagen");
-};
-
-exports.updateUser = async (idUser, data) => {
-  return await userModel.findByIdAndUpdate(idUser, data, {
-    new: true,
+exports.getUsers = async () => {
+  return await userModel.find().populate({
+    path: "favoritos",
+    select: "nombre descripcion autor imagen categorias",
   });
 };
 
+exports.findUser = async (idUser) => {
+  return await userModel.findById(idUser).populate({
+    path: "favoritos",
+    select: "nombre descripcion autor imagen categorias",
+  });
+};
+
+exports.updateUser = async (idUser, data) => {
+  return await userModel
+    .findByIdAndUpdate(idUser, data, {
+      new: true,
+    })
+    .populate({
+      path: "favoritos",
+      select: "nombre descripcion autor imagen categorias",
+    });
+};
+
 exports.deleteUser = async (idUser) => {
-  return await userModel.findByIdAndDelete(idUser);
+  return await userModel.findByIdAndDelete(idUser).populate({
+    path: "favoritos",
+    select: "nombre descripcion autor imagen categorias",
+  });
 };
 
 exports.createUser = async (usr) => {
