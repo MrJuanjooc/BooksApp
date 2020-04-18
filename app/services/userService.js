@@ -33,11 +33,11 @@ exports.deleteUser = async (idUser) => {
   return await userModel.findByIdAndDelete(idUser);
 };
 
-exports.createUser = async (usr, bk) => {
+exports.createUser = async (usr) => {
   if (!usr) {
     throw new reqFieldException("User");
   }
   let user = await userModel.create(usr);
-  
+
   return user;
 };
