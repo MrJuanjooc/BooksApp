@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken"),
   userService = require("../services/userService"),
   userModel = require("../models/userModel");
 
-exports.authentication = async (username, pass) => {
+exports.authentication = async (username, password) => {
   const user = await userService.getUSerByUsername(username);
   if (!user) {
     throw new Error("Id de usuario no encontrado");
   }
 
-  const Result = await user.comparePassword(pass);
+  const Result = await user.comparePassword(password);
   console.log(Result);
 
   if (!Result) {
