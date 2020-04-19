@@ -1,8 +1,15 @@
 const bookService = require("../services/bookService");
 
-exports.getBooks = async (book, res) => {
+exports.getBooks = async (req, res) => {
   try {
-    getResult = await bookService.getBooks(book);
+    const value = req.query.search || "";
+    getResult = await bookService.getBooks(value);
+
+    if (getResult == "") {
+      res
+        .status(404)
+        .send({ error: "El parametro ingresado no coincide con ningún libro" });
+    }
     res.status(200).send(getResult);
   } catch (err) {
     res.status(500).send(err);
