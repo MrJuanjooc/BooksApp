@@ -1,12 +1,14 @@
 const bookModel = require("../models/bookModel");
 
-exports.getBooks = async (book) => {
-  //if (bookModel.query.nombre) {
-  //  return await bookModel.findOne({
-  //    nombre: bookModel.query.nombre,
-  //  });
-  //}
-  return await bookModel.find();
+exports.getBooks = async (value) => {
+  let books = await bookModel.find({
+    $or: [
+      { nombre: new RegExp(value, "si") }, //Realiza la busqueda por el nombre del libreo teniendo en cuenta el parametro ingresado en la ruta
+      { autor: new RegExp(value, "si") },
+      { categorias: new RegExp(value, "si") },
+    ],
+  });
+  return books;
 };
 
 exports.createBook = async (idBook) => {
