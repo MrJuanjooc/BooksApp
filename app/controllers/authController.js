@@ -2,11 +2,11 @@ const authService = require("../services/authService"),
   userService = require("../services/userService");
 
 exports.login = async (req, res) => {
-  const username = req.body.user,
-    password = req.body.pass;
+  const user = req.body.username,
+    pass = req.body.password;
 
   try {
-    const token = await authService.authentication(username, password);
+    const token = await authService.authentication(user, pass);
     const response = { token: token };
 
     // if (!response) {
