@@ -3,20 +3,19 @@ const jwt = require("jsonwebtoken"),
   userService = require("../services/userService"),
   userModel = require("../models/userModel");
 
-exports.authentication = async (username, pass) => {
-  const user = await userService.getUSerByUsername(username);
-  if (!user) {
+exports.authentication = async (user, pass) => {
+  const username = await userService.getUSerByUsername(user);
+
+  if (!username) {
     throw new Error("Id de usuario no encontrado");
   }
 
-  const Result = await user.comparePassword(pass);
-  console.log(Result);
-
+  const Result = await username.comparePassword(pass);
   if (!Result) {
     throw new Error("Password Invalido");
   }
 
-  const token = jwt.sign({ user: user._id }, config.SECRET, {
+  const token = jwt.sign({ username: username._id }, config.SECRET, {
     expiresIn: 10000,
   });
 
@@ -25,7 +24,7 @@ exports.authentication = async (username, pass) => {
 
 exports.signUp = async (user) => {
   const username = user.username,
-  userExist = await userService.getUSerByUsername(username);
+    userExist = await userService.getUSerByUsername(username);
 
   if (userExist) {
     throw new Error("El username ya existe");
