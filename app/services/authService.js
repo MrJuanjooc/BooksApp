@@ -7,7 +7,7 @@ exports.authentication = async (user, pass) => {
   const username = await userService.getUSerByUsername(user);
 
   if (!username) {
-    throw new Error("Id de usuario no encontrado");
+    throw new Error("Id de usuario no fue encontrado");
   }
 
   const Result = await username.comparePassword(pass);
