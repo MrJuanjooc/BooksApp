@@ -24,7 +24,7 @@ exports.authentication = async (user, pass) => {
 
 exports.signUp = async (user) => {
   const username = user.username,
-  userExist = await userService.getUSerByUsername(username);
+    userExist = await userService.getUSerByUsername(username);
 
   if (userExist) {
     throw new Error("El username ya existe");
