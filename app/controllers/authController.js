@@ -2,16 +2,13 @@ const authService = require("../services/authService"),
   userService = require("../services/userService");
 
 exports.login = async (req, res) => {
-  const user = req.body.user,
-    pass = req.body.pass;
+  const user = req.body.username,
+    pass = req.body.password;
 
   try {
     const token = await authService.authentication(user, pass);
+    console.log(token);
     const response = { token: token };
-
-    // if (!response) {
-    //   res.status(404).send({ error: "Id de Usuario no Encontrado" });
-    // }
 
     res.status(200).send(response);
   } catch (err) {
