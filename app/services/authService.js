@@ -16,7 +16,7 @@ exports.authentication = async (username, password) => {
     throw new Error("Password Invalido");
   }
 
-  const token = jwt.sign({ user: user._id }, config.SECRET, {
+  const token = jwt.sign({ username: username._id }, config.SECRET, {
     expiresIn: 10000,
   });
 
