@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
 
     res.status(200).send(response);
   } catch (err) {
-    res.status(401).send({ error: "Autenticación Fallida" });
+    res.status(401).send({ error: "La Autenticación Fallida" });
   }
 };
 
