@@ -23,14 +23,12 @@ exports.findUser = async (idUser) => {
 };
 
 exports.updateUser = async (idUser, data) => {
-  return await userModel
-    .findByIdAndUpdate(idUser, data, {
-      new: true,
-    })
-    .populate({
-      path: "favoritos",
-      select: "nombre descripcion autor imagen categorias",
-    });
+  let updateResult = await userModel.updateOne({ _id: idUser }, { $set: data });
+
+  return await userModel.findById(idUser).populate({
+    path: "favoritos",
+    select: "nombre descripcion autor imagen categorias",
+  });
 };
 
 exports.deleteUser = async (idUser) => {
