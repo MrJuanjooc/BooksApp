@@ -39,11 +39,29 @@ userScheme.pre("save", async function (next) {
   if (!user.isModified("password")) {
     return next();
   }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, salt); //Cifrar el password
+    user.password = hashedPassword;
+    return next();
+  
+ 
+});
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(user.password, salt); //Cifrar el password
-  user.password = hashedPassword;
-  return next();
+userScheme.pre("updateOne", async function (next){
+  if (this._update.$set.password) {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this._update.$set.password, salt);
+
+    this._update.$set.password = hashedPassword;
+  }
+  // let updatepass = this._update.$set.password;
+  // if (updatepass) {
+  //   const salt = await bcrypt.genSalt(10);
+  //   const hashedPassword = await bcrypt.hash(updatepass, salt);
+
+  //   updatepass = hashedPassword;
+  // }
+  // return next();
 });
 
 mongoose.model("User", userScheme);
