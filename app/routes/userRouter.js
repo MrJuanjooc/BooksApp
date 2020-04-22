@@ -3,7 +3,7 @@ authMiddleware = require("../middlewares/authMiddleware");
 
 
 module.exports = (router) => {
-  router.route("/user").get(userController.getUser);
+  router.route("/user").get(authMiddleware, userController.getUser);
 
   router
     .route("/user/:id")
