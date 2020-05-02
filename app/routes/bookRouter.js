@@ -1,14 +1,23 @@
-const bookController = require("../controllers/bookController");
+const bookController = require("../controllers/bookController"),
+  authMiddleware = require("../middlewares/authMiddleware");
 
 module.exports = (router) => {
   router
-    .route("/book")
+    .route("/libro")
     .get(bookController.getBooks)
     .post(bookController.createBook);
 
   router
-    .route("/book/:id")
+    .route("/libro/:libroId")
     .delete(bookController.deleteBook)
     .get(bookController.findBook)
     .put(bookController.updateBook);
+
+  router
+    .route("/libro/addfavorite/:libroId")
+    .put(authMiddleware, bookController.addfavorite);
+
+  router
+    .route("/libro/rmfavorite/:libroId")
+    .put(authMiddleware, bookController.rmfavorite);
 };
