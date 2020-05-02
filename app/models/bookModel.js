@@ -29,7 +29,7 @@ module.exports = mongoose.model("Book");
 	"descripcion":	"En el año 1984 Londres es una ciudad lúgrube en la que la Policia del pensamiento...",
 	"autor":	"George Orwell",
 	"imagen": "1236",
-	"categoria":	["Guerra, Política, Romance"]
+	"categorias":	["Guerra, Política, Romance"]
 }
 
 {
