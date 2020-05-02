@@ -13,7 +13,8 @@ module.exports = (req, res, next) => {
     if (err) {
       throw new authException();
     }
-    req.user = decToken.user;
+    req.user = decToken.username;
+    
     next();
   });
 };
