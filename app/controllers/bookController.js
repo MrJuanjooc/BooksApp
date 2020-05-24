@@ -4,10 +4,10 @@ const bookService = require("../services/bookService"),
 
 exports.getBooks = async (req, res) => {
   try {
-    const value = req.query.search || "";
+    const value = req.query.search || " ";
     getResult = await bookService.getBooks(value);
 
-    if (getResult == "") {
+    if (getResult == " ") {
       throw new reqExceptions(
         "No exite un libro con los criterios ingresados",
         401
