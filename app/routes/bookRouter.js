@@ -11,7 +11,7 @@ module.exports = (router) => {
     .route("/libro/:libroId")
     .delete(bookController.deleteBook)
     .get(bookController.findBook)
-    .put(bookController.updateBook);
+    .patch(bookController.updateBook);
 
   router
     .route("/libro/addfavorite/:libroId")
