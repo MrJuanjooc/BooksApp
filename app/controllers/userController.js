@@ -1,8 +1,13 @@
-const userService = require("../services/userService");
+const userService = require("../services/userService"),
+  reqExceptions = require("../exceptions/reqExceptions");
 
 exports.getUser = async (user, res) => {
   try {
     getResult = await userService.getUsers(user);
+
+    if (!getResult) {
+      throw new reqExceptions("No existen usuarios para mostrar", 100);
+    }
     res.status(200).send(getResult);
   } catch (err) {
     res.status(500).send(err);
@@ -15,7 +20,10 @@ exports.deleteUser = async (req, res) => {
     deleteResult = await userService.deleteUser(idUser);
 
     if (!deleteResult) {
-      res.status(404).send({ error: "Usuario No Encontrado" });
+      throw new reqExceptions(
+        "El usuario no fue eliminado debido a que no existe",
+        406
+      );
     } else {
       res.status(200).send(deleteResult);
     }
@@ -30,7 +38,7 @@ exports.findUser = async (req, res) => {
     let findResult = await userService.findUser(idUser);
 
     if (!findResult) {
-      res.status(404).send({ error: "Usuario No Encontrado" });
+      throw new reqExceptions("El usuario no fue encontrado", 406);
     } else {
       res.status(200).send(findResult);
     }
@@ -46,7 +54,10 @@ exports.updateUser = async (req, res) => {
     let putResult = await userService.updateUser(idUser, data);
 
     if (!putResult) {
-      res.status(404).send({ error: "Usuario No Encontrado" });
+      throw new reqExceptions(
+        "El usuario no fue actualizado debido a que no existe",
+        406
+      );
     } else {
       res.status(200).send(putResult);
     }
